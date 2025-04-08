@@ -1,55 +1,55 @@
 # Kochka Web Client
 
-Это клиентская часть веб-приложения, построенная на [Next.js](https://nextjs.org).
+This is a web application client built with [Next.js](https://nextjs.org).
 
-## Структура проекта
+## Project Structure
 
 ```
 kochka-web-client/
-├── src/                    # Исходный код приложения
-│   └── app/               # Основная директория приложения
-│       ├── (routes)/      # Маршруты приложения
-│       ├── api/           # API-эндпоинты
-│       └── components/    # React-компоненты
-├── public/                # Статические файлы
-│   ├── images/           # Изображения
-│   └── fonts/            # Шрифты
-├── .next/                # Сборка Next.js
-├── node_modules/         # Зависимости проекта
-└── package.json          # Конфигурация проекта и зависимости
+├── src/                    # Source code
+│   ├── app/               # Next.js app directory
+│   │   ├── page.tsx      # Main page
+│   │   ├── layout.tsx    # Root layout
+│   │   └── globals.css   # Global styles
+│   └── stores/           # Zustand stores
+│       └── counter.ts    # Example store
+├── public/               # Static files
+│   ├── images/          # Application images
+│   └── fonts/           # Font files
+├── .next/               # Next.js build
+├── node_modules/        # Project dependencies
+└── package.json         # Project configuration
 ```
 
-## Начало работы
+## Getting Started
 
-Для запуска проекта в режиме разработки:
+To run the development server:
 
 ```bash
 npm run dev
-# или
-yarn dev
-# или
-pnpm dev
 ```
 
-Откройте [http://localhost:3000](http://localhost:3000) в браузере, чтобы увидеть результат.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Структура директорий
+## Directory Structure
 
-- `/src/app` - основная директория приложения, содержащая:
-  - `(routes)` - маршруты приложения
-  - `api` - API-эндпоинты
-  - `components` - React-компоненты
-  - `lib` - утилиты и вспомогательные функции
-  - `styles` - глобальные стили
+- `/src/app` - Next.js app directory containing:
+  - `page.tsx` - Main application page
+  - `layout.tsx` - Root layout component
+  - `globals.css` - Global styles
 
-- `/public` - статические файлы:
-  - `images` - изображения для всего приложения
-  - `fonts` - шрифты
+- `/src/stores` - Zustand state management:
+  - `counter.ts` - Example store implementation
 
-## Технологии
+- `/public` - Static files:
+  - `images` - Application images
+  - `fonts` - Font files
 
-- [Next.js](https://nextjs.org) - React-фреймворк
-- [TypeScript](https://www.typescriptlang.org) - типизированный JavaScript
-- [Tailwind CSS](https://tailwindcss.com) - утилитарный CSS-фреймворк
+## Technologies
+
+- [Next.js](https://nextjs.org) - React framework
+- [TypeScript](https://www.typescriptlang.org) - Typed JavaScript
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [Zustand](https://zustand-demo.pmnd.rs) - State management solution
 
 
