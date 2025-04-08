@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import MenuIcon from '@/icons/MenuIcon'
-import CloseIcon from '@/icons/CloseIcon'
-import HomeIcon from '@/icons/HomeIcon'
-import WorkoutsIcon from '@/icons/WorkoutsIcon'
-import ProfileIcon from '@/icons/ProfileIcon'
-import ArrowRightIcon from '@/icons/ArrowRightIcon'
+import MenuIcon from '@/assets/icons/menu.svg'
+import CloseIcon from '@/assets/icons/close.svg'
+import HomeIcon from '@/assets/icons/home.svg'
+import WorkoutsIcon from '@/assets/icons/workouts.svg'
+import ProfileIcon from '@/assets/icons/profile.svg'
+import ArrowRightIcon from '@/assets/icons/arrow-right.svg'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
