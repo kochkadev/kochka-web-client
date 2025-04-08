@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from 'react'
 import Link from 'next/link'
 import { Workout, Exercise, CompletedSet } from '@/stores/workout/types'
-import WorkoutTable from '@/app/components/WorkoutTable'
+import WorkoutTable from '@/components/WorkoutTable'
 
 
 
