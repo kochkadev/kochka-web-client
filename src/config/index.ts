@@ -1,0 +1,1 @@
+export const apiConfig = 'https://your-api.com'

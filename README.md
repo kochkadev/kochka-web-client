@@ -11,6 +11,8 @@ kochka-web-client/
 │   │   ├── page.tsx      # Main page
 │   │   ├── layout.tsx    # Root layout
 │   │   └── globals.css   # Global styles
+│   ├── api/              # API related code
+│   ├── config/           # Configuration files
 │   └── stores/           # Zustand stores
 │       └── counter.ts    # Example store
 ├── public/               # Static files
@@ -18,6 +20,10 @@ kochka-web-client/
 │   └── fonts/           # Font files
 ├── .next/               # Next.js build
 ├── node_modules/        # Project dependencies
+├── next.config.ts       # Next.js configuration
+├── postcss.config.mjs   # PostCSS configuration
+├── eslint.config.mjs    # ESLint configuration
+├── tsconfig.json        # TypeScript configuration
 └── package.json         # Project configuration
 ```
 
