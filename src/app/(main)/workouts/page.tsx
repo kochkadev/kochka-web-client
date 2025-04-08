@@ -1,4 +1,4 @@
-import WorkoutList from '@/components/WorkoutList'
+import WorkoutList from '@/components/workout/WorkoutList'
 import { Workout } from '@/stores/workout/types'
 
 // Временные данные для демонстрации

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Exercise } from '@/stores/workout/types'
-import WorkoutTable from './WorkoutTable'
+import WorkoutTable from './workout/WorkoutTable'
 import ImageIcon from '@/assets/icons/image.svg'
 
 interface ExerciseCardProps {
