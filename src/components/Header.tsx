@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import MenuIcon from '@/icons/MenuIcon'
+import CloseIcon from '@/icons/CloseIcon'
+import HomeIcon from '@/icons/HomeIcon'
+import WorkoutsIcon from '@/icons/WorkoutsIcon'
+import ProfileIcon from '@/icons/ProfileIcon'
+import ArrowRightIcon from '@/icons/ArrowRightIcon'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -13,7 +19,7 @@ export default function Header() {
   // Закрываем меню при изменении размера экрана
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) { // md breakpoint
+      if (window.innerWidth >= 768) { 
         setIsMenuOpen(false)
       }
     }
@@ -62,27 +68,11 @@ export default function Header() {
               aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Открыть меню</span>
-              <svg
-                className="h-6 w-6 transition-transform duration-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                )}
-              </svg>
+              {isMenuOpen ? (
+                <CloseIcon className="h-6 w-6 transition-transform duration-300" />
+              ) : (
+                <MenuIcon className="h-6 w-6 transition-transform duration-300" />
+              )}
             </button>
           </div>
         </div>
@@ -109,19 +99,7 @@ export default function Header() {
                 onClick={toggleMenu}
                 className="text-gray-300 hover:text-white focus:outline-none transition-colors duration-300 flex items-center gap-2"
               >
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
+                <ArrowRightIcon className="h-5 w-5" />
                 <span>Закрыть</span>
               </button>
             </div>
@@ -133,9 +111,7 @@ export default function Header() {
                     className="block px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors duration-300 flex items-center gap-3"
                     onClick={toggleMenu}
                   >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
+                    <HomeIcon className="h-5 w-5" />
                     Главная
                   </Link>
                 </li>
@@ -145,9 +121,7 @@ export default function Header() {
                     className="block px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors duration-300 flex items-center gap-3"
                     onClick={toggleMenu}
                   >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                    </svg>
+                    <WorkoutsIcon className="h-5 w-5" />
                     Тренировки
                   </Link>
                 </li>
@@ -157,9 +131,7 @@ export default function Header() {
                     className="block px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors duration-300 flex items-center gap-3"
                     onClick={toggleMenu}
                   >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
+                    <ProfileIcon className="h-5 w-5" />
                     Профиль
                   </Link>
                 </li>
