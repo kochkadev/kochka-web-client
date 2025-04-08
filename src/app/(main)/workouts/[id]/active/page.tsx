@@ -21,6 +21,11 @@ const mockWorkout: Workout = {
         { weight: 60, reps: 12 },
         { weight: 70, reps: 10 },
         { weight: 80, reps: 8 }
+      ],
+      previousSets: [
+        { weight: 55, reps: 12 },
+        { weight: 65, reps: 10 },
+        { weight: 75, reps: 8 }
       ]
     },
     {
@@ -30,6 +35,11 @@ const mockWorkout: Workout = {
         { weight: 80, reps: 10 },
         { weight: 90, reps: 8 },
         { weight: 100, reps: 6 }
+      ],
+      previousSets: [
+        { weight: 75, reps: 10 },
+        { weight: 85, reps: 8 },
+        { weight: 95, reps: 6 }
       ]
     }
   ]
@@ -141,25 +151,67 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
             </button>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="text-gray-400 text-sm">
-                  <th className="text-left pb-2">Подход</th>
-                  <th className="text-right pb-2">Вес (кг)</th>
-                  <th className="text-right pb-2">Повторения</th>
-                </tr>
-              </thead>
-              <tbody>
-                {completedSets.map((set, index) => (
-                  <tr key={index} className="border-t border-gray-700">
-                    <td className="py-3 text-gray-300">{index + 1}</td>
-                    <td className="py-3 text-right text-gray-300">{set.weight}</td>
-                    <td className="py-3 text-right text-gray-300">{set.reps}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="grid grid-cols-2 gap-6 mt-6">
+            {/* Текущая тренировка */}
+            <div className="bg-gray-900 rounded-lg overflow-hidden">
+              <div className="bg-gray-800 px-4 py-3 border-b border-gray-700">
+                <h3 className="text-gray-100 font-semibold">Текущая тренировка</h3>
+              </div>
+              <div className="p-4">
+                <table className="w-full border-separate border-spacing-0">
+                  <thead>
+                    <tr>
+                      <th className="text-left pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Подход</th>
+                      <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Вес</th>
+                      <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Повт.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {workout.exercises[currentExercise].sets.map((set, index) => {
+                      const completedSet = completedSets[index];
+                      return (
+                        <tr key={index}>
+                          <td className="py-3 text-gray-300 border-b border-gray-800">{index + 1}</td>
+                          <td className="py-3 text-right text-gray-200 font-medium border-b border-gray-800">
+                            {completedSet?.weight || '—'}
+                          </td>
+                          <td className="py-3 text-right text-gray-200 border-b border-gray-800">
+                            {completedSet?.reps || '—'}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Прошлая тренировка */}
+            <div className="bg-gray-900 rounded-lg overflow-hidden">
+              <div className="bg-gray-800 px-4 py-3 border-b border-gray-700">
+                <h3 className="text-gray-400 font-semibold">Прошлая тренировка</h3>
+              </div>
+              <div className="p-4">
+                <table className="w-full border-separate border-spacing-0">
+                  <thead>
+                    <tr>
+                      <th className="text-left pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Подход</th>
+                      <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Вес</th>
+                      <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Повт.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {workout.exercises[currentExercise].previousSets?.map((set, index) => (
+                      <tr key={index}>
+                        <td className="py-3 text-gray-400 border-b border-gray-800">{index + 1}</td>
+                        <td className="py-3 text-right text-gray-400 font-medium border-b border-gray-800">{set.weight}</td>
+                        <td className="py-3 text-right text-gray-400 border-b border-gray-800">{set.reps}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           {completedSets.length >= workout.exercises[currentExercise].sets.length && (

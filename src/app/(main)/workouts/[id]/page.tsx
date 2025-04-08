@@ -86,7 +86,7 @@ export default function WorkoutPage({ params }: { params: Promise<{ id: string }
       <div className="space-y-6">
         {workout.exercises.map((exercise) => (
           <div key={exercise.id} className="bg-gray-800 rounded-lg overflow-hidden">
-            <div className="flex flex-col md:flex-row md:h-[300px]">
+            <div className="flex flex-col md:flex-row md:h-[350px]">
               <div className="md:w-1/3 relative h-[250px] md:h-auto">
                 {exercise.image ? (
                   <Image
@@ -106,36 +106,60 @@ export default function WorkoutPage({ params }: { params: Promise<{ id: string }
               </div>
               <div className="p-6 md:w-2/3 overflow-y-auto">
                 <h2 className="text-xl font-semibold text-gray-100 mb-4">{exercise.name}</h2>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="text-gray-400 text-sm">
-                        <th className="text-left pb-2">Подход</th>
-                        <th className="text-right pb-2">План</th>
-                        <th className="text-right pb-2"></th>
-                        <th className="text-right pb-2 text-gray-500">Прошлая</th>
-                        <th className="text-right pb-2 text-gray-500"></th>
-                      </tr>
-                      <tr className="text-gray-400 text-xs border-b border-gray-700">
-                        <th className="text-left pb-2"></th>
-                        <th className="text-right pb-2">Вес</th>
-                        <th className="text-right pb-2">Повт.</th>
-                        <th className="text-right pb-2 text-gray-500">Вес</th>
-                        <th className="text-right pb-2 text-gray-500">Повт.</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {exercise.sets.map((set, index) => (
-                        <tr key={index} className="border-t border-gray-700">
-                          <td className="py-3 text-gray-300">{index + 1}</td>
-                          <td className="py-3 text-right text-gray-300">{set.weight}</td>
-                          <td className="py-3 text-right text-gray-300">{set.reps}</td>
-                          <td className="py-3 text-right text-gray-500">{exercise.previousSets?.[index]?.weight || '—'}</td>
-                          <td className="py-3 text-right text-gray-500">{exercise.previousSets?.[index]?.reps || '—'}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="grid grid-cols-2 gap-6">
+                  {/* План */}
+                  <div className="overflow-x-auto bg-gray-900 rounded-lg">
+                    <div className="bg-gray-700 px-4 py-3 rounded-t-lg border-b border-gray-600">
+                      <h3 className="text-gray-100 font-semibold">План</h3>
+                    </div>
+                    <div className="p-4">
+                      <table className="w-full border-separate border-spacing-0">
+                        <thead>
+                          <tr>
+                            <th className="text-left pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Подход</th>
+                            <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Вес</th>
+                            <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Повт.</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {exercise.sets.map((set, index) => (
+                            <tr key={index}>
+                              <td className="py-3 text-gray-200 border-b border-gray-800">{index + 1}</td>
+                              <td className="py-3 text-right text-gray-200 font-medium border-b border-gray-800">{set.weight}</td>
+                              <td className="py-3 text-right text-gray-200 border-b border-gray-800">{set.reps}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Прошлая тренировка */}
+                  <div className="overflow-x-auto bg-gray-900 rounded-lg">
+                    <div className="bg-gray-700 px-4 py-3 rounded-t-lg border-b border-gray-600">
+                      <h3 className="text-gray-400 font-semibold">Прошлая тренировка</h3>
+                    </div>
+                    <div className="p-4">
+                      <table className="w-full border-separate border-spacing-0">
+                        <thead>
+                          <tr>
+                            <th className="text-left pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Подход</th>
+                            <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Вес</th>
+                            <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Повт.</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {exercise.previousSets?.map((set, index) => (
+                            <tr key={index}>
+                              <td className="py-3 text-gray-400 border-b border-gray-800">{index + 1}</td>
+                              <td className="py-3 text-right text-gray-400 font-medium border-b border-gray-800">{set.weight}</td>
+                              <td className="py-3 text-right text-gray-400 border-b border-gray-800">{set.reps}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
