@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Workout } from '@/stores/workout/types'
+import WorkoutTable from '@/app/components/WorkoutTable'
 
 // Временные данные для демонстрации
 const mockWorkout: Workout = {
@@ -107,59 +108,15 @@ export default function WorkoutPage({ params }: { params: Promise<{ id: string }
               <div className="p-6 md:w-2/3 overflow-y-auto">
                 <h2 className="text-xl font-semibold text-gray-100 mb-4">{exercise.name}</h2>
                 <div className="grid grid-cols-2 gap-6">
-                  {/* План */}
-                  <div className="overflow-x-auto bg-gray-900 rounded-lg">
-                    <div className="bg-gray-700 px-4 py-3 rounded-t-lg border-b border-gray-600">
-                      <h3 className="text-gray-100 font-semibold">План</h3>
-                    </div>
-                    <div className="p-4">
-                      <table className="w-full border-separate border-spacing-0">
-                        <thead>
-                          <tr>
-                            <th className="text-left pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Подход</th>
-                            <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Вес</th>
-                            <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Повт.</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {exercise.sets.map((set, index) => (
-                            <tr key={index}>
-                              <td className="py-3 text-gray-200 border-b border-gray-800">{index + 1}</td>
-                              <td className="py-3 text-right text-gray-200 font-medium border-b border-gray-800">{set.weight}</td>
-                              <td className="py-3 text-right text-gray-200 border-b border-gray-800">{set.reps}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                  {/* Прошлая тренировка */}
-                  <div className="overflow-x-auto bg-gray-900 rounded-lg">
-                    <div className="bg-gray-700 px-4 py-3 rounded-t-lg border-b border-gray-600">
-                      <h3 className="text-gray-400 font-semibold">Прошлая тренировка</h3>
-                    </div>
-                    <div className="p-4">
-                      <table className="w-full border-separate border-spacing-0">
-                        <thead>
-                          <tr>
-                            <th className="text-left pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Подход</th>
-                            <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Вес</th>
-                            <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Повт.</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {exercise.previousSets?.map((set, index) => (
-                            <tr key={index}>
-                              <td className="py-3 text-gray-400 border-b border-gray-800">{index + 1}</td>
-                              <td className="py-3 text-right text-gray-400 font-medium border-b border-gray-800">{set.weight}</td>
-                              <td className="py-3 text-right text-gray-400 border-b border-gray-800">{set.reps}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  <WorkoutTable 
+                    title="План"
+                    sets={exercise.sets}
+                  />
+                  <WorkoutTable 
+                    title="Прошлая тренировка"
+                    sets={exercise.previousSets || []}
+                    isHistory
+                  />
                 </div>
               </div>
             </div>

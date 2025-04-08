@@ -1,15 +1,14 @@
+export interface Set {
+  weight: number
+  reps: number
+}
+
 export interface Exercise {
   id: number
   name: string
   image?: string
-  sets: {
-    weight: number
-    reps: number
-  }[]
-  previousSets?: {
-    weight: number
-    reps: number
-  }[]
+  sets: Set[]
+  previousSets?: Set[]
 }
 
 export interface Workout {

@@ -3,6 +3,7 @@
 import { useState, useEffect, use } from 'react'
 import Link from 'next/link'
 import { Workout, Exercise, CompletedSet } from '@/stores/workout/types'
+import WorkoutTable from '@/app/components/WorkoutTable'
 
 
 
@@ -153,65 +154,21 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
 
           <div className="grid grid-cols-2 gap-6 mt-6">
             {/* Текущая тренировка */}
-            <div className="bg-gray-900 rounded-lg overflow-hidden">
-              <div className="bg-gray-800 px-4 py-3 border-b border-gray-700">
-                <h3 className="text-gray-100 font-semibold">Текущая тренировка</h3>
-              </div>
-              <div className="p-4">
-                <table className="w-full border-separate border-spacing-0">
-                  <thead>
-                    <tr>
-                      <th className="text-left pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Подход</th>
-                      <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Вес</th>
-                      <th className="text-right pb-3 text-sm font-semibold text-gray-300 border-b border-gray-700">Повт.</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {workout.exercises[currentExercise].sets.map((set, index) => {
-                      const completedSet = completedSets[index];
-                      return (
-                        <tr key={index}>
-                          <td className="py-3 text-gray-300 border-b border-gray-800">{index + 1}</td>
-                          <td className="py-3 text-right text-gray-200 font-medium border-b border-gray-800">
-                            {completedSet?.weight || '—'}
-                          </td>
-                          <td className="py-3 text-right text-gray-200 border-b border-gray-800">
-                            {completedSet?.reps || '—'}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <WorkoutTable 
+              title="Текущая тренировка"
+              sets={workout.exercises[currentExercise].sets.map((set, index) => ({
+                ...set,
+                weight: completedSets[index]?.weight || 0,
+                reps: completedSets[index]?.reps || 0
+              }))}
+            />
 
             {/* Прошлая тренировка */}
-            <div className="bg-gray-900 rounded-lg overflow-hidden">
-              <div className="bg-gray-800 px-4 py-3 border-b border-gray-700">
-                <h3 className="text-gray-400 font-semibold">Прошлая тренировка</h3>
-              </div>
-              <div className="p-4">
-                <table className="w-full border-separate border-spacing-0">
-                  <thead>
-                    <tr>
-                      <th className="text-left pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Подход</th>
-                      <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Вес</th>
-                      <th className="text-right pb-3 text-sm font-semibold text-gray-400 border-b border-gray-700">Повт.</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {workout.exercises[currentExercise].previousSets?.map((set, index) => (
-                      <tr key={index}>
-                        <td className="py-3 text-gray-400 border-b border-gray-800">{index + 1}</td>
-                        <td className="py-3 text-right text-gray-400 font-medium border-b border-gray-800">{set.weight}</td>
-                        <td className="py-3 text-right text-gray-400 border-b border-gray-800">{set.reps}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <WorkoutTable 
+              title="Прошлая тренировка"
+              sets={workout.exercises[currentExercise].previousSets || []}
+              isHistory
+            />
           </div>
 
           {completedSets.length >= workout.exercises[currentExercise].sets.length && (
