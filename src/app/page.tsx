@@ -1,20 +1,13 @@
 'use client'
 
-import { useCounter } from '@/stores/counter'
+import WorkoutList from '@/components/WorkoutList'
 
 export default function Home() {
-  const { count, increase, decrease } = useCounter()
-
   return (
-    <main className="flex flex-col items-center justify-center h-screen gap-4">
-      <h1 className="text-3xl font-bold">Count: {count}</h1>
-      <div className="flex gap-2">
-        <button onClick={decrease} className="px-4 py-2 bg-red-500 text-white rounded">
-          -
-        </button>
-        <button onClick={increase} className="px-4 py-2 bg-green-500 text-white rounded">
-          +
-        </button>
+    <main className="min-h-screen bg-gray-900 py-8">
+      <div className="container mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-8 text-gray-100">Тренировки</h1>
+        <WorkoutList />
       </div>
     </main>
   )
