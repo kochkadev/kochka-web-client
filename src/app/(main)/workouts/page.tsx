@@ -3,6 +3,7 @@
 import WorkoutList from '@/components/workout/WorkoutList'
 import { Workout } from '@/stores/workout/types'
 import { useState } from 'react'
+import Tabs from '@/components/ui/Tabs'
 
 // Временные данные для демонстрации
 const mockWorkoutsByWeek: Record<number, Workout[]> = {
@@ -220,25 +221,22 @@ const mockWorkoutsByWeek: Record<number, Workout[]> = {
 export default function WorkoutsPage() {
   const [selectedGroup, setSelectedGroup] = useState(1)
 
+  const tabs = [
+    { id: 1, label: 'Неделя 1' },
+    { id: 2, label: 'Неделя 2' },
+    { id: 3, label: 'Неделя 3' },
+    { id: 4, label: 'Неделя 4' },
+  ]
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-100 mb-4">Тренировки</h1>
-        <div className="flex gap-2">
-          {[1, 2, 3, 4].map((group) => (
-            <button
-              key={group}
-              onClick={() => setSelectedGroup(group)}
-              className={`px-4 py-2 rounded-lg ${
-                selectedGroup === group
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-              }`}
-            >
-              Неделя {group}
-            </button>
-          ))}
-        </div>
+        <Tabs
+          items={tabs}
+          selectedId={selectedGroup}
+          onChange={setSelectedGroup}
+        />
       </div>
       <WorkoutList workouts={mockWorkoutsByWeek[selectedGroup] || []} />
     </div>
