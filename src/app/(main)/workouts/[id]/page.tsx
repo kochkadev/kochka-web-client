@@ -32,7 +32,7 @@ const mockWorkout: Workout = {
     {
       id: 2,
       name: 'Становая тяга',
-      image: '/exercises/deadlift.jpg', 
+      image: '/exercises/squat.jpg', 
       sets: [
         { weight: 80, reps: 10 },
         { weight: 90, reps: 8 },
