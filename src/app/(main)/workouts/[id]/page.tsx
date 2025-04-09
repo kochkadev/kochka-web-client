@@ -57,26 +57,26 @@ export default function WorkoutPage({ params }: { params: Promise<{ id: string }
   }
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="mb-6">
+    <div className="container mx-auto py-4 sm:py-8 px-4">
+      <div className="mb-4 sm:mb-6">
         <Link 
           href="/workouts" 
-          className="text-gray-400 hover:text-white flex items-center gap-2 mb-4 transition-colors"
+          className="text-gray-400 hover:text-white flex items-center gap-2 mb-3 sm:mb-4 transition-colors"
         >
           <BackIcon className="w-5 h-5" />
-          Назад к тренировкам
+          <span className="text-sm sm:text-base">Назад к тренировкам</span>
         </Link>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0 mb-4 sm:mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-100">{workout.name}</h1>
-            <time className="text-gray-400">{new Date(workout.date).toLocaleDateString('ru-RU')}</time>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-100">{workout.name}</h1>
+            <time className="text-sm sm:text-base text-gray-400">{new Date(workout.date).toLocaleDateString('ru-RU')}</time>
           </div>
           <button
             onClick={handleStartWorkout}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors flex items-center gap-2"
+            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
           >
             <PlayIcon className="w-5 h-5" />
-            Начать тренировку
+            <span className="text-sm sm:text-base">Начать тренировку</span>
           </button>
         </div>
       </div>

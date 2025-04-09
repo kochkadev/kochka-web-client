@@ -1,5 +1,4 @@
 import MenuIcon from '@/assets/icons/menu.svg'
-import CloseIcon from '@/assets/icons/close.svg'
 
 interface MobileMenuButtonProps {
   isOpen: boolean

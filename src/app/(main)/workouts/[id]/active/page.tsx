@@ -93,66 +93,66 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
   }
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="mb-6">
+    <div className="container mx-auto py-4 sm:py-8 px-4">
+      <div className="mb-4 sm:mb-6">
         <Link 
           href={`/workouts/${resolvedParams.id}`}
-          className="text-gray-400 hover:text-white flex items-center gap-2 mb-4 transition-colors"
+          className="text-gray-400 hover:text-white flex items-center gap-2 mb-3 sm:mb-4 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
-          Вернуться к программе
+          <span className="text-sm sm:text-base">Вернуться к программе</span>
         </Link>
-        <h1 className="text-3xl font-bold text-gray-100 mb-2">{workout.name}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-100 mb-2">{workout.name}</h1>
       </div>
 
       {isWarmup ? (
-        <div className="bg-gray-800 rounded-lg p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-100 mb-4">Разминка</h2>
+        <div className="bg-gray-800 rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-100 mb-3 sm:mb-4">Разминка</h2>
           <div className="text-center">
-            <div className="text-6xl font-bold text-blue-500 mb-4">{formatTime(timer)}</div>
-            <p className="text-gray-400">Разомнитесь перед началом тренировки</p>
+            <div className="text-4xl sm:text-6xl font-bold text-blue-500 mb-3 sm:mb-4">{formatTime(timer)}</div>
+            <p className="text-sm sm:text-base text-gray-400">Разомнитесь перед началом тренировки</p>
           </div>
         </div>
       ) : (
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-100 mb-4">
+        <div className="bg-gray-800 rounded-lg p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-100 mb-3 sm:mb-4">
             {workout.exercises[currentExercise].name}
           </h2>
           
-          <div className="mb-6">
-            <div className="flex gap-4 mb-4">
+          <div className="mb-4 sm:mb-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-3 sm:mb-4">
               <div className="flex-1">
-                <label className="block text-sm font-medium text-gray-400 mb-1">Вес (кг)</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-400 mb-1">Вес (кг)</label>
                 <input
                   type="number"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="70"
                 />
               </div>
               <div className="flex-1">
-                <label className="block text-sm font-medium text-gray-400 mb-1">Повторения</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-400 mb-1">Повторения</label>
                 <input
                   type="number"
                   value={reps}
                   onChange={(e) => setReps(e.target.value)}
-                  className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-700 text-white rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="12"
                 />
               </div>
             </div>
             <button
               onClick={handleSetComplete}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors text-sm sm:text-base"
             >
               Записать подход
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
             {/* Текущая тренировка */}
             <WorkoutTable 
               title="Текущая тренировка"
@@ -172,10 +172,10 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
           </div>
 
           {completedSets.length >= workout.exercises[currentExercise].sets.length && (
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               <button
                 onClick={handleNextExercise}
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors text-sm sm:text-base"
                 disabled={currentExercise === workout.exercises.length - 1}
               >
                 {currentExercise === workout.exercises.length - 1 
