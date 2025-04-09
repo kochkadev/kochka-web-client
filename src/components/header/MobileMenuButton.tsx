@@ -15,11 +15,7 @@ export default function MobileMenuButton({ isOpen, onClick }: MobileMenuButtonPr
         aria-expanded={isOpen}
       >
         <span className="sr-only">Открыть меню</span>
-        {isOpen ? (
-          <CloseIcon className="h-6 w-6 transition-transform duration-300" />
-        ) : (
           <MenuIcon className="h-6 w-6 transition-transform duration-300" />
-        )}
       </button>
     </div>
   )
