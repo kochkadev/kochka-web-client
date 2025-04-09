@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useEffect, use } from 'react'
-import Link from 'next/link'
 import { Workout, CompletedSet } from '@/stores/workout/types'
 import WarmupScreen from '@/components/workout/WarmupScreen'
 import CurrentExercise from '@/components/workout/CurrentExercise'
+import BackButton from '@/components/ui/BackButton'
 
 // Временные данные для демонстрации
 const mockWorkout: Workout = {
@@ -86,15 +86,7 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
   return (
     <div className="container mx-auto py-4 sm:py-8 px-4">
       <div className="mb-4 sm:mb-6">
-        <Link 
-          href={`/workouts/${resolvedParams.id}`}
-          className="text-gray-400 hover:text-white flex items-center gap-2 mb-3 sm:mb-4 transition-colors"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-          </svg>
-          <span className="text-sm sm:text-base">Вернуться к программе</span>
-        </Link>
+        <BackButton href={`/workouts/${resolvedParams.id}`} label="Вернуться к программе" />
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-100 mb-2">{workout.name}</h1>
       </div>
 

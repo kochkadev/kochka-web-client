@@ -1,11 +1,10 @@
 'use client'
 
 import { useState, use } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Workout } from '@/stores/workout/types'
 import ExerciseCard from '@/components/ExerciseCard'
-import BackIcon from '@/assets/icons/back.svg'
+import BackButton from '@/components/ui/BackButton'
 import PlayIcon from '@/assets/icons/play.svg'
 
 // Временные данные для демонстрации
@@ -59,13 +58,7 @@ export default function WorkoutPage({ params }: { params: Promise<{ id: string }
   return (
     <div className="container mx-auto py-4 sm:py-8 px-4">
       <div className="mb-4 sm:mb-6">
-        <Link 
-          href="/workouts" 
-          className="text-gray-400 hover:text-white flex items-center gap-2 mb-3 sm:mb-4 transition-colors"
-        >
-          <BackIcon className="w-5 h-5" />
-          <span className="text-sm sm:text-base">Назад к тренировкам</span>
-        </Link>
+        <BackButton href="/workouts" label="Назад к тренировкам" />
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0 mb-4 sm:mb-6">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-100">{workout.name}</h1>
