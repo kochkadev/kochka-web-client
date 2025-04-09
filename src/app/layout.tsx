@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Kochka",
   description: "Fitness tracking application",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/logo.ico",
+    shortcut: "/logo.ico",
+    apple: "/logo.ico",
+  },
 };
 
 export default function RootLayout({
@@ -34,7 +39,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Kochka" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <link rel="icon" href="/logo.ico" />
+        <link rel="apple-touch-icon" href="/logo.ico" />
       </head>
       <body className="antialiased bg-gray-900 min-h-screen">
         {children}

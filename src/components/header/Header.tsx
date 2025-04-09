@@ -32,7 +32,13 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-xl font-bold text-gray-100">
-              Kochka
+              <img 
+                src="/logo.webp" 
+                alt="Logo" 
+                width={45} 
+                height={45}
+                className="object-contain"
+              />
             </Link>
           </div>
 
