@@ -64,8 +64,11 @@ export default function CurrentExercise({
         <div className="mt-4 sm:mt-6">
           <button
             onClick={onNextExercise}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors text-sm sm:text-base"
-            disabled={isLastExercise}
+            className={`w-full ${
+              isLastExercise 
+                ? 'bg-green-600 hover:bg-green-700' 
+                : 'bg-blue-600 hover:bg-blue-700'
+            } text-white font-semibold py-2 px-6 rounded-lg transition-colors text-sm sm:text-base`}
           >
             {isLastExercise 
               ? 'Тренировка завершена'

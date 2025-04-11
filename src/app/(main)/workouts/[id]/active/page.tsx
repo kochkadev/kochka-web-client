@@ -5,6 +5,8 @@ import { Workout, CompletedSet } from '@/stores/workout/types'
 import WarmupScreen from '@/components/workout/WarmupScreen'
 import CurrentExercise from '@/components/workout/CurrentExercise'
 import BackButton from '@/components/ui/BackButton'
+import WorkoutTimer from '@/components/workout/WorkoutTimer'
+import WorkoutCompleteScreen from '@/components/workout/WorkoutCompleteScreen'
 
 // Временные данные для демонстрации
 const mockWorkout: Workout = {
@@ -51,6 +53,8 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
   const [completedSets, setCompletedSets] = useState<CompletedSet[]>([])
   const [weight, setWeight] = useState('')
   const [reps, setReps] = useState('')
+  const [workoutDuration, setWorkoutDuration] = useState(0)
+  const [isComplete, setIsComplete] = useState(false)
   const resolvedParams = use(params)
 
   useEffect(() => {
@@ -80,7 +84,13 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
     if (currentExercise < workout.exercises.length - 1) {
       setCurrentExercise(prev => prev + 1)
       setCompletedSets([])
+    } else {
+      setIsComplete(true)
     }
+  }
+
+  const handleBack = () => {
+    window.location.href = `/workouts/${resolvedParams.id}`
   }
 
   return (
@@ -88,10 +98,13 @@ export default function ActiveWorkoutPage({ params }: { params: Promise<{ id: st
       <div className="mb-4 sm:mb-6">
         <BackButton href={`/workouts/${resolvedParams.id}`} label="Вернуться к программе" />
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-100 mb-2">{workout.name}</h1>
+        {!isWarmup && !isComplete && <WorkoutTimer onTimeUpdate={setWorkoutDuration} />}
       </div>
 
       {isWarmup ? (
         <WarmupScreen timer={timer} />
+      ) : isComplete ? (
+        <WorkoutCompleteScreen duration={workoutDuration} onBack={handleBack} />
       ) : (
         <CurrentExercise
           exercise={workout.exercises[currentExercise]}
