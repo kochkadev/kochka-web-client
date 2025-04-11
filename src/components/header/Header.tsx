@@ -26,7 +26,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="bg-gray-800 shadow-lg relative z-50">
+    <header className="bg-gray-800 shadow-lg relative z-50 sticky top-0">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
