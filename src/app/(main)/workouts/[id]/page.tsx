@@ -6,6 +6,7 @@ import { Workout } from '@/stores/workout/types'
 import ExerciseCard from '@/components/ExerciseCard'
 import BackButton from '@/components/ui/BackButton'
 import PlayIcon from '@/assets/icons/play.svg'
+import WorkoutProgress from '@/components/workout/WorkoutProgress'
 
 // Временные данные для демонстрации
 const mockWorkout: Workout = {
@@ -78,6 +79,10 @@ export default function WorkoutPage({ params }: { params: Promise<{ id: string }
         {workout.exercises.map((exercise) => (
           <ExerciseCard key={exercise.id} exercise={exercise} />
         ))}
+      </div>
+
+      <div className="mt-6">
+        <WorkoutProgress exercises={workout.exercises} />
       </div>
     </div>
   )
