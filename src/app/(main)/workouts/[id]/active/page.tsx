@@ -17,6 +17,7 @@ const mockWorkout: Workout = {
     {
       id: 1,
       name: 'Приседания со штангой',
+      image: '/exercises/squat.jpg',
       sets: [
         { weight: 60, reps: 12 },
         { weight: 70, reps: 10 },
@@ -31,6 +32,7 @@ const mockWorkout: Workout = {
     {
       id: 2,
       name: 'Становая тяга',
+      image: '/exercises/squat.jpg',
       sets: [
         { weight: 80, reps: 10 },
         { weight: 90, reps: 8 },

@@ -3,6 +3,8 @@
 import { Exercise, CompletedSet } from '@/stores/workout/types'
 import WorkoutTable from './WorkoutTable'
 import SetInputForm from './SetInputForm'
+import Image from 'next/image'
+import ImageIcon from '@/assets/icons/image.svg'
 
 interface CurrentExerciseProps {
   exercise: Exercise
@@ -32,6 +34,22 @@ export default function CurrentExercise({
       <h2 className="text-lg sm:text-xl font-semibold text-gray-100 mb-3 sm:mb-4">
         {exercise.name}
       </h2>
+
+      <div className="relative w-full h-[200px] sm:h-[300px] mb-4 sm:mb-6 rounded-lg overflow-hidden">
+        {exercise.image ? (
+          <Image
+            src={exercise.image}
+            alt={exercise.name}
+            fill
+            className="object-contain"
+            sizes="(max-width: 640px) 100vw, 800px"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+            <ImageIcon className="w-16 sm:w-24 h-16 sm:h-24 text-gray-600" />
+          </div>
+        )}
+      </div>
       
       {completedSets.length < exercise.sets.length && (
         <SetInputForm
